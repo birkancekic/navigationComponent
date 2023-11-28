@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.navArgs
 import com.birkancekic.navigationcomponentkullanimi.databinding.FragmentDetayBinding
+import com.google.android.material.snackbar.Snackbar
 
 
 class DetayFragment : Fragment() {
@@ -22,6 +24,18 @@ class DetayFragment : Fragment() {
 
 
         binding.textViewBilgi.text= "$gelenAd - $gelenYas- $urunAd- $urunId"
+
+        val backpress= object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+            Snackbar.make(binding.textViewBilgi,"geri dönmek istiyor musun",Snackbar.LENGTH_SHORT)
+                .setAction("evet"){
+                    isEnabled=false//geri dönüş aktif
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                }.show()
+
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,backpress)
 
         return binding.root
     }
