@@ -29,6 +29,11 @@ import com.google.android.material.snackbar.Snackbar
              Navigation.findNavController(it).navigate(gecis)
          }
 
+         binding.buttonGoster.setOnClickListener {
+             Navigation.findNavController(it).navigate(R.id.bottomSheetGecis)
+         }
+
+
         return binding.root
     }
 
